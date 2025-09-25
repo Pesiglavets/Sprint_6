@@ -1,10 +1,10 @@
 import pytest
-#import allure
+import allure
 from pages.main_page import MainPage
 
 
 class TestFAQ:
-#    @allure.title("Проверка выпадающего списка: {question_text}")
+    @allure.title("Проверка выпадающего списка: {question_text}")
     @pytest.mark.parametrize('question_text,expected_answer_snippet', [
         ("Сколько это стоит? И как оплатить?", "Сутки — 400 рублей"),
         ("Хочу сразу несколько самокатов! Так можно?", "Пока что у нас так: один заказ — один самокат"),

@@ -1,4 +1,4 @@
-#import allure
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -10,27 +10,29 @@ class MainPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
-#    @allure.step('Нажать верхнюю кнопку "Заказать"')
+    @allure.step('Нажать верхнюю кнопку "Заказать"')
     def click_top_order_button(self):
         self.click_element(MainPageLocators.ORDER_BUTTON_TOP)
 
-#    @allure.step('Нажать нижнюю кнопку "Заказать"')
+    @allure.step('Нажать нижнюю кнопку "Заказать"')
     def click_bottom_order_button(self):
+        self.find_element(MainPageLocators.ORDER_BUTTON_BOTTOM)        
+        self.scroll_to_element(MainPageLocators.ORDER_BUTTON_BOTTOM)
         self.click_element(MainPageLocators.ORDER_BUTTON_BOTTOM)
 
-#    @allure.step('Нажать на логотип Самоката')
+    @allure.step('Нажать на логотип Самоката')
     def click_scooter_logo(self):
         self.click_element(MainPageLocators.SCOOTER_LOGO)
 
-#    @allure.step('Нажать на логотип Яндекса')
+    @allure.step('Нажать на логотип Яндекса')
     def click_yandex_logo(self):
         self.click_element(MainPageLocators.YANDEX_LOGO)
 
-#    @allure.step('Прокрутить до раздела FAQ')
+    @allure.step('Прокрутить до раздела FAQ')
     def scroll_to_faq(self):
         self.scroll_to_element(FAQPageLocators.FAQ_SECTION)
 
-#    @allure.step('Найти вопрос по тексту "{question_text}"')
+    @allure.step('Найти вопрос по тексту "{question_text}"')
     def _find_question_element(self, question_text):
         questions = self.find_elements(FAQPageLocators.FAQ_QUESTIONS)
         for question in questions:
@@ -38,10 +40,10 @@ class MainPage(BasePage):
                 return question
         raise ValueError(f"Вопрос с текстом '{question_text}' не найден")
 
-#    @allure.step('Найти ответ соответствующий вопросу "{question_text}"')
+    @allure.step('Найти ответ соответствующий вопросу "{question_text}"')
     def _find_answer_element(self, question_text):
-        questions = WebDriverWait(self.driver, 10).until(EC.presence_of_all_elements_located(FAQPageLocators.FAQ_QUESTIONS))
-        answers = WebDriverWait(self.driver, 10).until(EC.presence_of_all_elements_located(FAQPageLocators.FAQ_ANSWERS))
+        questions = self.find_elements(FAQPageLocators.FAQ_QUESTIONS)
+        answers = self.find_elements(FAQPageLocators.FAQ_ANSWERS)
         
         for i, question in enumerate(questions):
             if question.text == question_text:
@@ -51,17 +53,12 @@ class MainPage(BasePage):
                     raise ValueError(f"Для вопроса '{question_text}' не найден ответ")
         raise ValueError(f"Вопрос с текстом '{question_text}' не найден")
 
-#    @allure.step('Кликнуть на вопрос FAQ по тексту "{question_text}"')
+    @allure.step('Кликнуть на вопрос FAQ по тексту "{question_text}"')
     def click_faq_question_by_text(self, question_text):
         question = self._find_question_element(question_text)
         question.click()
 
-#    @allure.step('Получить ответ на вопрос "{question_text}"')
+    @allure.step('Получить ответ на вопрос "{question_text}"')
     def get_faq_answer_by_question_text(self, question_text):
         answer_element = self._find_answer_element(question_text)
         return answer_element.text
-
-#    @allure.step('Проверить отображение ответа на вопрос "{question_text}"')
-    def is_faq_answer_displayed_by_text(self, question_text):
-        answer_element = self._find_answer_element(question_text)
-        return answer_element.is_displayed()
