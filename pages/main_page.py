@@ -17,7 +17,6 @@ class MainPage(BasePage):
 
     @allure.step('Нажать нижнюю кнопку "Заказать"')
     def click_bottom_order_button(self):
-        self.find_element(MainPageLocators.ORDER_BUTTON_BOTTOM)        
         self.scroll_to_element(MainPageLocators.ORDER_BUTTON_BOTTOM)
         self.click_element(MainPageLocators.ORDER_BUTTON_BOTTOM)
 

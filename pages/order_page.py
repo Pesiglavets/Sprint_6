@@ -17,10 +17,8 @@ class OrderPage(BasePage):
 
     @allure.step('Выбрать срок аренды "{period}"')
     def select_rental_period(self, period):
-        self.find_element(self.locators.RENTAL_PERIOD_DROPDOWN)        
         self.click_element(self.locators.RENTAL_PERIOD_DROPDOWN)
-        period_locator = (By.XPATH, f"//div[text()='{period}']")
-        self.find_element(period_locator)             
+        period_locator = (By.XPATH, f"//div[text()='{period}']")    
         self.click_element(period_locator)
 
     @allure.step('Выбрать цвет самоката "{color}"')
