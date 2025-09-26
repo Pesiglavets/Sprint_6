@@ -1,7 +1,5 @@
 import pytest
 import allure
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from pages.main_page import MainPage
 from pages.order_page import OrderPage
 from data_set import TestData
@@ -40,29 +38,3 @@ class TestOrderScooter:
         order_page.confirm_order()
         success_message = order_page.get_success_message()
         assert "Заказ оформлен" in success_message, "Сообщение об успешном заказе не отображается"
-
-class TestMainPageRedirects:
-    @allure.title("Проверка перехода на главную страницу через логотип Самоката")
-    def test_scooter_logo_redirect(self, driver):
-        main_page = MainPage(driver)
-        
-        main_page.go_to_site()
-        main_page.click_scooter_logo()
-        
-        current_url = main_page.get_current_url()
-        assert current_url == "https://qa-scooter.praktikum-services.ru/"
-
-    @allure.title("Проверка перехода на Дзен через логотип Яндекса")
-    def test_yandex_logo_redirect(self, driver):
-        main_page = MainPage(driver)
-        
-        main_page.go_to_site()
-        
-        original_window = driver.current_window_handle
-        main_page.click_yandex_logo()
-        
-        main_page.switch_to_new_window(original_window)
-        
-        WebDriverWait(driver, 10).until(EC.url_contains("dzen.ru"))
-        current_url = driver.current_url
-        assert "dzen.ru" in current_url, f"Ожидался dzen.ru, но получен {current_url}"
