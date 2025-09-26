@@ -1,7 +1,4 @@
 import allure
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from .base_page import BasePage
 from locators.main_page_locators import MainPageLocators, FAQPageLocators
 
@@ -9,6 +6,10 @@ from locators.main_page_locators import MainPageLocators, FAQPageLocators
 class MainPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
+
+    @allure.step('Нажать кнопку "да все привыкли"')
+    def click_accept_cookie_button(self):
+        self.click_element(MainPageLocators.COOKIE_ACCEPT_BUTTON)
 
     @allure.step('Нажать верхнюю кнопку "Заказать"')
     def click_top_order_button(self):

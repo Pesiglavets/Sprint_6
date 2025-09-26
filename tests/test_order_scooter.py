@@ -18,8 +18,7 @@ class TestOrderScooter:
         order_page = OrderPage(driver)
         
         main_page.go_to_site()
-        
-        # Используем getattr для вызова метода по имени
+        main_page.click_accept_cookie_button()
         order_button_method = getattr(main_page, order_button_method)
         order_button_method()
         
@@ -39,10 +38,10 @@ class TestOrderScooter:
         )
         
         order_page.confirm_order()
-        
         success_message = order_page.get_success_message()
         assert "Заказ оформлен" in success_message, "Сообщение об успешном заказе не отображается"
 
+class TestMainPageRedirects:
     @allure.title("Проверка перехода на главную страницу через логотип Самоката")
     def test_scooter_logo_redirect(self, driver):
         main_page = MainPage(driver)
