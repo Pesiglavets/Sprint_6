@@ -5,7 +5,7 @@ from pages.main_page import MainPage
 
 class TestMainPageRedirects:
     @allure.title("Проверка перехода на главную страницу через логотип Самоката")
-    def test_scooter_logo_redirect(self, driver):
+    def test_scooter_logo_redirect_to_main(self, driver):
         main_page = MainPage(driver)
         
         main_page.go_to_site()
@@ -15,7 +15,7 @@ class TestMainPageRedirects:
         assert current_url == "https://qa-scooter.praktikum-services.ru/"
 
     @allure.title("Проверка перехода на Дзен через логотип Яндекса")
-    def test_yandex_logo_redirect(self, driver):
+    def test_yandex_logo_redirect_to_dzen(self, driver):
         main_page = MainPage(driver)
         
         main_page.go_to_site()

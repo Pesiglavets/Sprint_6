@@ -11,7 +11,7 @@ class TestOrderScooter:
         (TestData.ORDER_DATA_SET_1, "верхнюю", "click_top_order_button"),
         (TestData.ORDER_DATA_SET_2, "нижнюю", "click_bottom_order_button")
     ])
-    def test_order_scooter_positive_flow(self, driver, data_set, order_button_type, order_button_method):
+    def test_order_scooter_positive_flow_success(self, driver, data_set, order_button_type, order_button_method):
         main_page = MainPage(driver)
         order_page = OrderPage(driver)
         

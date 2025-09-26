@@ -15,7 +15,7 @@ class TestFAQ:
         ("Можно ли отменить заказ?", "Да, пока самокат не привезли"),
         ("Я жизу за МКАДом, привезёте?", "Да, обязательно")
     ])
-    def test_faq_questions(self, driver, question_text, expected_answer_snippet):
+    def test_faq_questions_answers_matched(self, driver, question_text, expected_answer_snippet):
         main_page = MainPage(driver)
         
         main_page.go_to_site()
