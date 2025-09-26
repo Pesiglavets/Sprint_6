@@ -19,10 +19,15 @@ class BasePage:
     @allure.step('Найти элементы по локатору {locator}')
     def find_elements(self, locator, time=10):
         return WebDriverWait(self.driver, time).until(EC.presence_of_all_elements_located(locator), message=f"Can't find elements by locator {locator}")
-    
+
+    @allure.step('Кликабелен элемент по локатору {locator}')
+    def element_clickable(self, locator, time=10):
+        return WebDriverWait(self.driver, time).until(EC.element_to_be_clickable(locator), message=f"Can't click element by locator {locator}")
+
     @allure.step('Кликнуть на элемент {locator}')
     def click_element(self, locator):
         element = self.find_element(locator)
+        self.element_clickable(locator)
         element.click()
 
     @allure.step('Ввести текст "{text}" в поле {locator}')

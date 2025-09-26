@@ -19,8 +19,8 @@ class TestFAQ:
         main_page = MainPage(driver)
         
         main_page.go_to_site()
-        main_page.click_accept_cookie_button()
         main_page.scroll_to_faq()
+        main_page.click_accept_cookie_button()
         main_page.click_faq_question_by_text(question_text)
         
         answer_text = main_page.get_faq_answer_by_question_text(question_text)
